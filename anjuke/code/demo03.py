@@ -130,6 +130,7 @@ if __name__ == '__main__':
         for i in res:
             # print(i)
             curr_page_num.append(i)
+
         
         res2 = rf.get_tel_num()
         for i in res2:
