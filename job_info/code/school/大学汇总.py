@@ -107,7 +107,7 @@ if __name__ == '__main__':
     1. 循环所有的学校信息
     在里面是通过每个学校的名字实例化主页信息对象
     2.调用主页对象中的获取标题和连接的方法
-    返回的结果为 标题数组和 链接数组
+    返回的结果为 标题数组 和 链接数组
     3. 写一个总循环,同步循环标题和链接
     4. 实例化一个rf对象，调用refind对象中的匹配手机号方法,
     其中,链接列表的内容作为参数,    返回移动电话号列表和座机号列表
@@ -117,9 +117,26 @@ if __name__ == '__main__':
     7. 调用save_data_to_xls方法,    将构造的数据保存到表格文档中
     '''
     # 1. 循环所有的学校信息
-    for curr_college in college_info.keys():
-        download_single_collage_info(curr_college)
+    # for curr_college in college_info.keys():
+    #     download_single_collage_info(curr_college)
     # download_single_collage_info('赣南医学院')
+
+
+    while True:
+        print('-'*50)
+        i = 0
+        for curr_college in college_info.keys():
+            i += 1
+            print('|',curr_college.ljust(20, ' '))
+        choice_college = input('请选择学校:,按0退出:')
+        print('-'*80)
+        if choice_college == '0':
+            print('掰掰┏(＾0＾)┛')
+            break
+        elif choice_college in college_info.keys():
+            download_single_collage_info(choice_college)
+        else:
+            print('输入错误,重新输入!')
 
 
 
