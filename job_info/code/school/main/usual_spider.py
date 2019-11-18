@@ -5,7 +5,7 @@
 # 本模块的功能:<获取每个学习的首页的信息>
 from re import findall
 from requests import *
-
+from xlwt import *
 
 class MainPageInfo:
     """
@@ -35,6 +35,7 @@ class MainPageInfo:
         for i in res:
             # print(i)
             link_list.append(self.base_url + i)
+            # break
         return link_list
         pass
 
@@ -44,6 +45,7 @@ class MainPageInfo:
         for i in res:
             # print(i)
             every_title.append(i)
+            # break
         return every_title
         pass
 
@@ -59,7 +61,14 @@ class ReFind:
 
     def _get_single_page_html(self):
         resp = get(self.url)
-        resp = resp.content.decode("utf-8")
+        try:
+            resp = resp.content.decode("utf-8")
+        except:
+            try:
+                resp = resp.content.decode("gb2312")
+            except:
+                resp = resp.content.decode("gbk")
+
         self.txt = resp
 
     def get_mobile_num(self):
@@ -76,6 +85,50 @@ class ReFind:
         res = findall(patt, self.txt)
         return res
         pass
+
+
+# 定义一个保存数据函数
+def save_data_to_xls(filename,data):
+    '''
+    用于保存数据到表格
+    :param filename: 文件名
+    :param data: 字典类型数据
+    :return:
+    '''
+    # 需要xlwt库的支持
+    # import xlwt
+    file = Workbook(encoding='utf-8')
+    # 指定file以utf-8的格式打开
+    table = file.add_sheet(filename)
+    # 指定打开的文件名
+    # data = {
+    #     "1": ["张三", 150, 120, 100],
+    #     "2": ["李四", 90, 99, 95],
+    #     "3": ["王五", 60, 66, 68]
+    # }
+    # 字典数据
+
+    ldata = []
+    num = [a for a in data]
+    # for循环指定取出key值存入num中
+    # num.sort()
+    # 字典数据取出后无需，需要先排序
+    # print("num",num)
+    for x in num:
+        # for循环将data字典中的键和值分批的保存在ldata中
+        t = [int(x)]
+        for a in data[x]:
+            t.append(a)
+        ldata.append(t)
+    # print("ldata",ldata)
+    for i, p in enumerate(ldata):
+        # 将数据写入文件,i是enumerate()函数返回的序号数
+        for j, q in enumerate(p):
+            # print i,j,q
+            table.write(i, j, q)
+    file.save(filename+'.xls')
+
+
 
 
 if __name__ == '__main__':
