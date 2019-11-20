@@ -3,7 +3,7 @@
 # Created by 秋叶夏风
 
 # 本模块的功能:<获取每个学习的首页的信息>
-from re import findall
+from re import findall,I
 from requests import *
 from xlwt import *
 
@@ -81,11 +81,16 @@ class ReFind:
     def get_tel_num(self):
         # patt = "\D(1\d{10})\D"
         # 座机号正则
-        patt = r'\(?0\d{2,3}[)-]?\d{7,8}'
+        # patt = r'\(?0\d{2,3}[)-]?\d{7,8}'
+        patt = '\D0\d{2,3}-\d{7,8}\D'
         res = findall(patt, self.txt)
         return res
         pass
-
+    def get_email(self):
+        patt = r'^[0-9a-z_-.]+@([0-9a-z]+.)+[a-z]+$'
+        res = findall(patt, self.txt,I)
+        return res
+        pass
 
 # 定义一个保存数据函数
 def save_data_to_xls(filename,data):

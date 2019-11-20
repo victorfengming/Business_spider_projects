@@ -114,7 +114,7 @@ if __name__ == '__main__':
     5. 构造data数据,字典格式,key为序号,value为当前行数据的内容列表
     其中包括标题信息和手机号电话号列表
     6. 学校名称作为文件名filename,data作为代保存数据
-    7. 调用save_data_to_xls方法,    将构造的数据保存到表格文档中
+    7. 调用save_data_to_xls方法, 将构造的数据保存到表格文档中
     '''
     # 1. 循环所有的学校信息
     # for curr_college in college_info.keys():
