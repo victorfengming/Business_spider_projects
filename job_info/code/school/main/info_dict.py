@@ -15,39 +15,6 @@ template2 = {
 
 college_info = {
 
-    "首都医科大学": {
-        "url": "http://jy.ccmu.edu.cn/sites/p/01/main.jsp?ColumnID=p_24",
-        "base_url": "http://jy.ccmu.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a title='(.*?)' href=\"javascript:openUrl\('/p/24/.*?'\)",
-            "link": "<a title='.*?' href=\"javascript:openUrl\('/(p/24/.*?)'\)",
-        },
-    },
-
-    "天津中医药大学": {
-        "url": "http://zsjy.tjutcm.edu.cn/list.jsp?urltype=tree.TreeTempUrl&wbtreeid=1013",
-        "base_url": "http://zsjy.tjutcm.edu.cn/",
-        "find_pattern_dict": {
-            "title": "href=\"info.*?\" target=\"_blank\"   title=\"(.*?)\">",
-            "link": "href=\"(info.*?)\" target=\"_blank\"   title=\".*?\">",
-        },
-    },
-    "安徽中医药大学": {
-        "url": "http://jyxxw.ahtcm.edu.cn/1727/list2.htm",
-        "base_url": "http://jyxxw.ahtcm.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href='.*?' target='_blank' title='(.*?)'>",
-            "link": "<a href='(.*?)' target='_blank' title='.*?'>",
-        },
-    },
-    "牡丹江医学院": {
-        "url": "http://mdjmujy.university-hr.com/showmore.php?actiontype=12&pg=1",
-        "base_url": "http://mdjmujy.university-hr.com/",
-        "find_pattern_dict": {
-            "title": "search_keyword=\" title=\"\">(.*?)</a>",
-            "link": "href=\"(.*?search_keyword=)\" title=\"\">.*?</a>",
-        },
-    },
 
     "黑龙江中医药大学": {
         "url": "http://zyyjyxx.hljucm.net/zpxx/zpxx.htm",
@@ -250,6 +217,24 @@ college_info = {
         },
     },
 
+    "首都医科大学": {
+        "url": "http://jy.ccmu.edu.cn/sites/p/01/main.jsp?ColumnID=p_24",
+        "base_url": "http://jy.ccmu.edu.cn/",
+        "find_pattern_dict": {
+            "title": "<a title='(.*?)' href=\"javascript:openUrl\('/p/24/.*?'\)",
+            "link": "<a title='.*?' href=\"javascript:openUrl\('/(p/24/.*?)'\)",
+        },
+    },
+
+    "天津中医药大学": {
+        "url": "http://zsjy.tjutcm.edu.cn/list.jsp?urltype=tree.TreeTempUrl&wbtreeid=1013",
+        "base_url": "http://zsjy.tjutcm.edu.cn/",
+        "find_pattern_dict": {
+            "title": "href=\"info.*?\" target=\"_blank\"   title=\"(.*?)\">",
+            "link": "href=\"(info.*?)\" target=\"_blank\"   title=\".*?\">",
+        },
+    },
+
     # TODO 这个在第二条数据卡住了,代解决
     "天津医科大学": {
         # 目标地址
@@ -261,6 +246,24 @@ college_info = {
         "find_pattern_dict": {
             "title": "htm' target='_blank' title='(.*?)'",
             "link": "'(.*?htm)' target='_blank' title="
+        },
+    },
+
+    "安徽中医药大学": {
+        "url": "http://jyxxw.ahtcm.edu.cn/1727/list2.htm",
+        "base_url": "http://jyxxw.ahtcm.edu.cn/",
+        "find_pattern_dict": {
+            "title": "<a href='.*?' target='_blank' title='(.*?)'>",
+            "link": "<a href='(.*?)' target='_blank' title='.*?'>",
+        },
+    },
+
+    "牡丹江医学院": {
+        "url": "http://mdjmujy.university-hr.com/showmore.php?actiontype=12&pg=1",
+        "base_url": "http://mdjmujy.university-hr.com/",
+        "find_pattern_dict": {
+            "title": "search_keyword=\" title=\"\">(.*?)</a>",
+            "link": "href=\"(.*?search_keyword=)\" title=\"\">.*?</a>",
         },
     },
 }

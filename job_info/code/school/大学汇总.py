@@ -69,21 +69,27 @@ def download_single_collage_info(curr_college):
         curr_row = [title_list[i]]
         # 遍历移动手机号码,每一条数据(单元格)是一个号码
         for mobile in mobile_list:
-            curr_row.append(mobile)
-            if len(curr_row)>=3:
+            if len(curr_row)>=4:
                 break
+            curr_row.append(mobile)
+
         # 遍历座机号码,每一条数据(单元格)是一个号码
         for tel in tel_list:
+            if len(curr_row)>=4:
+                break
             curr_row.append(tel)
             # 保证有两个电话号
-            if len(curr_row)>=3:
-                break
+
 
         # 要是数据不够长,就追加值
         if len(curr_row) == 1:
             curr_row.append('')
             curr_row.append('')
+            curr_row.append('')
         if len(curr_row) == 2:
+            curr_row.append('')
+            curr_row.append('')
+        if len(curr_row) == 3:
             curr_row.append('')
         # 遍历座机号码,每一条数据(单元格)是一个邮箱
         for email in email_list:
@@ -137,26 +143,26 @@ if __name__ == '__main__':
     7. 调用save_data_to_xls方法, 将构造的数据保存到表格文档中
     '''
     # 1. 循环所有的学校信息
-    for curr_college in college_info.keys():
-        download_single_collage_info(curr_college)
+    # for curr_college in college_info.keys():
+    #     download_single_collage_info(curr_college)
     # download_single_collage_info('赣南医学院')
 
 
-    # while True:
-    #     print('-'*50)
-    #     i = 0
-    #     for curr_college in college_info.keys():
-    #         i += 1
-    #         print('|',curr_college.ljust(20, ' '))
-    #     choice_college = input('请选择学校:,按0退出:')
-    #     print('-'*80)
-    #     if choice_college == '0':
-    #         print('掰掰┏(＾0＾)┛')
-    #         break
-    #     elif choice_college in college_info.keys():
-    #         download_single_collage_info(choice_college)
-    #     else:
-    #         print('输入错误,重新输入!')
+    while True:
+        print('-'*50)
+        i = 0
+        for curr_college in college_info.keys():
+            i += 1
+            print('|',curr_college.ljust(20, ' '))
+        choice_college = input('请选择学校:,按0退出:')
+        print('-'*80)
+        if choice_college == '0':
+            print('掰掰┏(＾0＾)┛')
+            break
+        elif choice_college in college_info.keys():
+            download_single_collage_info(choice_college)
+        else:
+            print('输入错误,重新输入!')
 
     # download_single_collage_info('山西医科大学')
 
