@@ -26,9 +26,9 @@ class MainPageInfo:
             self.resp = resp.content.decode("utf-8")
         except:
             self.resp = resp.content.decode("gbk")
-        print("-----------------------------------------------------------------")
-        print(resp)
-        print("-----------------------------------------------------------------")
+        # print("-----------------------------------------------------------------")
+        # print(resp)
+        # print("-----------------------------------------------------------------")
     def get_single_page_link(self):
         link_list = []
         res = findall(self.find_link_pattern, self.resp)
@@ -132,7 +132,7 @@ def save_data_to_xls(filename,data):
         for j, q in enumerate(p):
             # print i,j,q
             table.write(i, j, q)
-    file.save(filename+'.xls')
+    file.save('./Excel/'+filename+'.xls')
 
 
 
@@ -161,9 +161,9 @@ if __name__ == '__main__':
     for i in link_list:
         # 创建一个子页面对象
         rf = ReFind(i)
-        print("-------------------------正在匹配-----------------------------")
-        print(i)
-        print("-------------------------本页面手机号-------------------------")
-        print(rf.get_tel_num())
-        print("-------------------------本页面座机号-------------------------")
-        print(rf.get_mobile_num())
+        # print("-------------------------正在匹配-----------------------------")
+        # print(i)
+        # print("-------------------------本页面手机号-------------------------")
+        # print(rf.get_tel_num())
+        # print("-------------------------本页面座机号-------------------------")
+        # print(rf.get_mobile_num())

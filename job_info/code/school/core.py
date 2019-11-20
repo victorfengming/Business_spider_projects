@@ -10,12 +10,12 @@ from main.info_dict import *
 
 def get_main_page_title_and_link(curr_college):
 
-    print("-"*80)
-    print("一共有", len(college_info),"个学校 :")
+    # print("-"*80)
+    # print("一共有", len(college_info),"个学校 :")
     # 实例化主页信息类对象
-    print("当前是--->",curr_college)
-    print(college_info[curr_college]["base_url"])
-    print("-"*80)
+    # print("当前是--->",curr_college)
+    # print(college_info[curr_college]["base_url"])
+    # print("-"*80)
     info = college_info[curr_college]
     # 2.    调用主页对象中的获取标题和连接的方法
     # 返回的结果为    标题数组和    链接数组
@@ -23,22 +23,22 @@ def get_main_page_title_and_link(curr_college):
     mpi = MainPageInfo(info["url"], info["base_url"], info["find_pattern_dict"])
     # 标题列表
     title_list = mpi.get_every_title()
-    print("-" * 80)
-    print("标题获取成功")
-    print("一共有：",len(title_list),"个标题")
-    print("-" * 80)
-    for i in title_list:
-        print(i)
+    # print("-" * 80)
+    # print("标题获取成功")
+    # print("一共有：",len(title_list),"个标题")
+    # print("-" * 80)
+    # for i in title_list:
+        # print(i)
 
     # 链接列表
     link_list = mpi.get_single_page_link()
-    print("-"*80)
-    print("链接获取成功")
-    print("一共有：",len(link_list),"个链接")
-    print("-"*80)
+    # print("-"*80)
+    # print("链接获取成功")
+    # print("一共有：",len(link_list),"个链接")
+    # print("-"*80)
 
-    for i in link_list:
-        print(i)
+    # for i in link_list:
+        # print(i)
 
 
     return title_list,link_list
@@ -69,13 +69,13 @@ def download_single_collage_info(curr_college):
         curr_row = [title_list[i]]
         # 遍历移动手机号码,每一条数据(单元格)是一个号码
         for mobile in mobile_list:
-            if len(curr_row)>=4:
+            if len(curr_row)>=2:
                 break
             curr_row.append(mobile)
 
         # 遍历座机号码,每一条数据(单元格)是一个号码
         for tel in tel_list:
-            if len(curr_row)>=4:
+            if len(curr_row)>=2:
                 break
             curr_row.append(tel)
             # 保证有两个电话号
@@ -84,44 +84,44 @@ def download_single_collage_info(curr_college):
         # 要是数据不够长,就追加值
         if len(curr_row) == 1:
             curr_row.append('')
-            curr_row.append('')
-            curr_row.append('')
-        if len(curr_row) == 2:
-            curr_row.append('')
-            curr_row.append('')
-        if len(curr_row) == 3:
-            curr_row.append('')
+        #     curr_row.append('')
+        #     curr_row.append('')
+        # if len(curr_row) == 2:
+        #     curr_row.append('')
+        #     curr_row.append('')
+        # if len(curr_row) == 3:
+        #     curr_row.append('')
         # 遍历座机号码,每一条数据(单元格)是一个邮箱
         for email in email_list:
             curr_row.append(email)
             # 限制数据量
-            if len(curr_row)>=5:
+            if len(curr_row)>=3:
                 break
-        print("-" * 80)
-        print("当前数据为")
-        print(curr_row)
-        print("-" * 80)
+        # print("-" * 80)
+        # print("当前数据为")
+        # print(curr_row)
+        # print("-" * 80)
         data[i+1] = curr_row
         # 实例数据格式:
         # data = {
         #     1:['首都医学院','13930206059','13567542345','400-88884839','400-56781235']
         # }
-        print("-" * 80)
-        print("成功准备第", i, "条数据")
-        print("-" * 80)
+        # print("-" * 80)
+        # print("成功准备第", i, "条数据")
+        # print("-" * 80)
 
     # 6. 学校名称作为文件名filename, data作为代保存数据
     file_name = curr_college
-    print("-" * 80)
-    print("-----------------------------------数据为-------------------------------")
-    print(data)
-    print("-" * 80)
+    # print("-" * 80)
+    # print("-----------------------------------数据为-------------------------------")
+    # print(data)
+    # print("-" * 80)
 
     # 保存数据
     save_data_to_xls(file_name, data)
-    print("-" * 80)
-    print("保存数据成功--->", file_name)
-    print("-" * 80)
+    # print("-" * 80)
+    # print("保存数据成功--->", file_name)
+    # print("-" * 80)
 
     # 暂时就循环一次,用于测试
     # break
@@ -143,19 +143,25 @@ if __name__ == '__main__':
     7. 调用save_data_to_xls方法, 将构造的数据保存到表格文档中
     '''
     # 1. 循环所有的学校信息
-    # for curr_college in college_info.keys():
-    #     download_single_collage_info(curr_college)
+    for curr_college in college_info.keys():
+        try:
+            download_single_collage_info(curr_college)
+        except:
+            print('-'*120)
+            print("###########################大瑕疵了########################")
+            print(curr_college)
+            print('-'*120)
     # download_single_collage_info('赣南医学院')
 
 
     while True:
-        print('-'*50)
+        # print('-'*50)
         i = 0
         for curr_college in college_info.keys():
             i += 1
-            print('|',curr_college.ljust(20, ' '))
+            # print('|',curr_college.ljust(20, ' '))
         choice_college = input('请选择学校:,按0退出:')
-        print('-'*80)
+        # print('-'*80)
         if choice_college == '0':
             print('掰掰┏(＾0＾)┛')
             break

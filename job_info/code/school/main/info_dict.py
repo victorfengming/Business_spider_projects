@@ -3,18 +3,26 @@
 # Created by 秋叶夏风
 
 # 本模块的功能:<用于存储各个网站信息>
-template1 = {
-                "title": "<a href='.*?' target='_blank' title='(.*?)'>",
-                "link": "<a href='(.*?)' target='_blank' title='.*?'>",
-            },
-
-template2 = {
-                "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
-                "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
-            },
+# template1 = {
+#                 "title": "<a href='.*?' target='_blank' title='(.*?)'>",
+#                 "link": "<a href='(.*?)' target='_blank' title='.*?'>",
+#             },
+#
+# template2 = {
+#                 "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
+#                 "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
+#             },
 
 college_info = {
 
+    "内蒙古医科大学": {
+        "url": "http://immc.university-hr.com/showmore.php?actiontype=8",
+        "base_url": "http://immc.university-hr.com/",
+        "find_pattern_dict": {
+            "title": "<a href=\"showarticle.*?\"[.|\s]*?>(.*?)</a>",
+            "link": "<a href=\"(showarticle\.php\?actiontype=8&id=.*?)\"",
+        },
+    },
 
     "黑龙江中医药大学": {
         "url": "http://zyyjyxx.hljucm.net/zpxx/zpxx.htm",
@@ -159,12 +167,17 @@ college_info = {
         },
     },
 
-    "内蒙古医科大学": {
-        "url": "http://immc.university-hr.com/showmore.php?actiontype=8",
-        "base_url": "http://immc.university-hr.com/",
+    # # TODO 这个在第二条数据卡住了,代解决
+    "天津医科大学": {
+        # 目标地址
+        "url": "http://www.tmu.edu.cn/jyw/3334/list.htm",
+        # 基础的url,本站的基础地址,
+        # 用于拼接获取到的半拉科技的地址前面
+        "base_url": "http://www.tmu.edu.cn/",
+        # 正则表达式字典
         "find_pattern_dict": {
-            "title": "<a href=\"showarticle.*?\"[.|\s]*?>(.*?)</a>",
-            "link": "<a href=\"(showarticle\.php\?actiontype=8&id=.*?)\"",
+            "title": "htm' target='_blank' title='(.*?)'",
+            "link": "'(.*?htm)' target='_blank' title="
         },
     },
 
@@ -235,19 +248,6 @@ college_info = {
         },
     },
 
-    # TODO 这个在第二条数据卡住了,代解决
-    "天津医科大学": {
-        # 目标地址
-        "url": "http://www.tmu.edu.cn/jyw/3334/list.htm",
-        # 基础的url,本站的基础地址,
-        # 用于拼接获取到的半拉科技的地址前面
-        "base_url": "http://www.tmu.edu.cn/",
-        # 正则表达式字典
-        "find_pattern_dict": {
-            "title": "htm' target='_blank' title='(.*?)'",
-            "link": "'(.*?htm)' target='_blank' title="
-        },
-    },
 
     "安徽中医药大学": {
         "url": "http://jyxxw.ahtcm.edu.cn/1727/list2.htm",
@@ -257,7 +257,7 @@ college_info = {
             "link": "<a href='(.*?)' target='_blank' title='.*?'>",
         },
     },
-
+    #
     "牡丹江医学院": {
         "url": "http://mdjmujy.university-hr.com/showmore.php?actiontype=12&pg=1",
         "base_url": "http://mdjmujy.university-hr.com/",
@@ -266,4 +266,5 @@ college_info = {
             "link": "href=\"(.*?search_keyword=)\" title=\"\">.*?</a>",
         },
     },
+
 }
