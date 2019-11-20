@@ -3,18 +3,78 @@
 # Created by 秋叶夏风
 
 # 本模块的功能:<用于存储各个网站信息>
-# template1 = {
-#                 "title": "<a href='.*?' target='_blank' title='(.*?)'>",
-#                 "link": "<a href='(.*?)' target='_blank' title='.*?'>",
-#             },
-#
-# template2 = {
-#                 "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
-#                 "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
-#             },
+template1 = {
+                "title": "<a href='.*?' target='_blank' title='(.*?)'>",
+                "link": "<a href='(.*?)' target='_blank' title='.*?'>",
+            }
+template2 = {
+                "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
+                "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
+            }
+template3 = {
+                "title": "title=\"(.*?)\" class=\"item-link",
+                "link": "href=\"../info(.*?)\" title",
+            }
 
 college_info = {
+    "山西中医药大学": {
+        # http://jy.sxtcm.edu.cn/info/1054/3460.htm
+        "url": "http://jy.sxtcm.edu.cn/jyxx/qyzpxx.htm",
+        "base_url": "http://jy.sxtcm.edu.cn/info",
+        "find_pattern_dict": {
+            "title": "title=\"(.*?)\" class=\"item-link",
+            "link": "href=\"../info(.*?)\" title",
+        },
+    },
 
+
+    "湖南中医药大学": {
+        "url": "http://hnzyy.bibibi.net/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
+        "base_url": "http://hnzyy.bibibi.net/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "安徽医科大学": {
+        "url": "http://ahmu.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
+        "base_url": "http://ahmu.bysjy.com.cn/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "吉林医药学院": {
+        "url": "http://jlmu.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=&degree=",
+        "base_url": "http://jlmu.bysjy.com.cn/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "长春中医药大学": {
+        "url": "http://cczyy.bibibi.net/module/getonlines?start_page=1&k=&recruit_type=&count=15&start=1&_=1574266372438",
+        "base_url": "http://cczyy.bibibi.net/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "沈阳医学院": {
+        "url": "http://symc.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
+        "base_url": "http://symc.bysjy.com.cn/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "中国医科大学": {
+        "url": "http://jy.cmu.edu.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=&degree=",
+        "base_url": "http://jy.cmu.edu.cn/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "福建医科大学": {
+        "url": "http://fjyk.bibibi.net/module/getonlines?start_page=1&k=&recruit_type=&count=15&start=1&_=1574259529573",
+        "base_url": "http://fjyk.bibibi.net/detail/online?id=",
+        "find_pattern_dict": template3
+    },
+
+    "江西中医药大学": {
+        "url": "http://zsjyc.jxutcm.edu.cn/module/getonlines?start_page=1&k=&recruit_type=&count=15&start=1&_=1574258054387",
+        "base_url": "http://zsjyc.jxutcm.edu.cn/detail/online?id=",
+        "find_pattern_dict": template3
+    },
     "内蒙古医科大学": {
         "url": "http://immc.university-hr.com/showmore.php?actiontype=8",
         "base_url": "http://immc.university-hr.com/",
@@ -54,10 +114,7 @@ college_info = {
     "沈阳药科大学": {
         "url": "http://syphu.jysd.com/campus",
         "base_url": "http://syphu.jysd.com/",
-        "find_pattern_dict": {
-            "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
-            "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
-        },
+        "find_pattern_dict": template2
     },
 
     "哈尔滨医科大学": {
@@ -72,10 +129,7 @@ college_info = {
     "皖南医学院": {
         "url": "http://jiuye.wnmc.edu.cn/_t378/zpxx/list.psp",
         "base_url": "http://jiuye.wnmc.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href='.*?' target='_blank' title='(.*?)'>",
-            "link": "<a href='(.*?)' target='_blank' title='.*?'>",
-        },
+        "find_pattern_dict": template1,
     },
     "蚌埠医学院": {
         "url": "https://xsc.bbmc.edu.cn/jyzdzx/zpxx.htm",
@@ -89,10 +143,7 @@ college_info = {
     "赣南医学院": {
         "url": "http://jy.gmu.cn/campus",
         "base_url": "http://jy.gmu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
-            "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
-        },
+        "find_pattern_dict": template2
     },
     "山东中医药大学": {
         "url": "https://jiuye.sdutcm.edu.cn/031/pagelist.jsp?id=c80a152d39ed4a799d0da2daf546aa7d",
@@ -116,28 +167,19 @@ college_info = {
     "济宁医学院": {
         "url": "http://jyzd.jnmc.edu.cn/988/list.htm",
         "base_url": "http://jyzd.jnmc.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href='.*?' target='_blank' title='(.*?)'>",
-            "link": "<a href='(.*?)' target='_blank' title='.*?'>",
-        },
+        "find_pattern_dict": template1,
     },
 
     "新乡医学院": {
         "url": "http://job.xxmu.edu.cn/campus",
         "base_url": "http://job.xxmu.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
-            "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
-        },
+        "find_pattern_dict": template2
     },
 
     "湖北中医药大学": {
         "url": "http://hbtcm.91wllm.com/campus",
         "base_url": "http://hbtcm.91wllm.com/",
-        "find_pattern_dict": {
-            "title": "<a href=\"/campus/view/id/.*?\" target=\"_blank\">(.*?)</a>",
-            "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
-        },
+        "find_pattern_dict": template2
     },
 
     "湖北医药学院": {
@@ -252,10 +294,7 @@ college_info = {
     "安徽中医药大学": {
         "url": "http://jyxxw.ahtcm.edu.cn/1727/list2.htm",
         "base_url": "http://jyxxw.ahtcm.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href='.*?' target='_blank' title='(.*?)'>",
-            "link": "<a href='(.*?)' target='_blank' title='.*?'>",
-        },
+        "find_pattern_dict": template1,
     },
     #
     "牡丹江医学院": {

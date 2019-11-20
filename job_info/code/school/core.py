@@ -112,16 +112,16 @@ def download_single_collage_info(curr_college):
 
     # 6. 学校名称作为文件名filename, data作为代保存数据
     file_name = curr_college
-    # print("-" * 80)
-    # print("-----------------------------------数据为-------------------------------")
-    # print(data)
-    # print("-" * 80)
+    print("-" * 80)
+    print("-----------------------------------数据为-------------------------------")
+    print(data)
+    print("-" * 80)
 
     # 保存数据
     save_data_to_xls(file_name, data)
-    # print("-" * 80)
-    # print("保存数据成功--->", file_name)
-    # print("-" * 80)
+    print("-" * 80)
+    print("保存数据成功--->", file_name)
+    print("-" * 80)
 
     # 暂时就循环一次,用于测试
     # break
@@ -143,23 +143,22 @@ if __name__ == '__main__':
     7. 调用save_data_to_xls方法, 将构造的数据保存到表格文档中
     '''
     # 1. 循环所有的学校信息
-    for curr_college in college_info.keys():
-        try:
-            download_single_collage_info(curr_college)
-        except:
-            print('-'*120)
-            print("###########################大瑕疵了########################")
-            print(curr_college)
-            print('-'*120)
+    # for curr_college in college_info.keys():
+    #     try:
+    #         download_single_collage_info(curr_college)
+    #     except:
+    #         print('-'*80)
+    #         print("网站响应异常:"+curr_college)
+    #         print('-'*80)
     # download_single_collage_info('赣南医学院')
-
-
+    #
+    #
     while True:
         # print('-'*50)
         i = 0
         for curr_college in college_info.keys():
             i += 1
-            # print('|',curr_college.ljust(20, ' '))
+            print('|',curr_college.ljust(20, ' '))
         choice_college = input('请选择学校:,按0退出:')
         # print('-'*80)
         if choice_college == '0':
