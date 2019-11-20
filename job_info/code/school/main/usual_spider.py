@@ -82,13 +82,14 @@ class ReFind:
         # patt = "\D(1\d{10})\D"
         # 座机号正则
         # patt = r'\(?0\d{2,3}[)-]?\d{7,8}'
-        patt = '\D0\d{2,3}-\d{7,8}\D'
+        patt = '\D(0\d{2,3}-\d{7,8})\D'
         res = findall(patt, self.txt)
         return res
         pass
+
     def get_email(self):
-        patt = r'^[0-9a-z_-.]+@([0-9a-z]+.)+[a-z]+$'
-        res = findall(patt, self.txt,I)
+        patt = "[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+"
+        res = findall(patt, self.txt)
         return res
         pass
 

@@ -15,19 +15,6 @@ template2 = {
 
 college_info = {
 
-    # TODO 这个在第二条数据卡住了,代解决
-    "天津医科大学": {
-        # 目标地址
-        "url": "http://www.tmu.edu.cn/jyw/3334/list.htm",
-        # 基础的url,本站的基础地址,
-        # 用于拼接获取到的半拉科技的地址前面
-        "base_url": "http://www.tmu.edu.cn/",
-        # 正则表达式字典
-        "find_pattern_dict": {
-            "title": "htm' target='_blank' title='(.*?)'",
-            "link": "'(.*?htm)' target='_blank' title="
-        },
-    },
     "首都医科大学": {
         "url": "http://jy.ccmu.edu.cn/sites/p/01/main.jsp?ColumnID=p_24",
         "base_url": "http://jy.ccmu.edu.cn/",
@@ -263,5 +250,17 @@ college_info = {
         },
     },
 
-
+    # TODO 这个在第二条数据卡住了,代解决
+    "天津医科大学": {
+        # 目标地址
+        "url": "http://www.tmu.edu.cn/jyw/3334/list.htm",
+        # 基础的url,本站的基础地址,
+        # 用于拼接获取到的半拉科技的地址前面
+        "base_url": "http://www.tmu.edu.cn/",
+        # 正则表达式字典
+        "find_pattern_dict": {
+            "title": "htm' target='_blank' title='(.*?)'",
+            "link": "'(.*?htm)' target='_blank' title="
+        },
+    },
 }
