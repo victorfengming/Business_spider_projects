@@ -31,8 +31,8 @@ class ListViewDemo(QWidget):
         # 调用下载函数
         self.run_one_download_task(qModelIndex.row())
 
-    def showDialog(self):
 
+    def showDialog(self):
         text, ok = QInputDialog.getText(self, '医学招聘数据抓取工具-身份验证',
             '请输入管理员密码:')
         if ok:
@@ -46,10 +46,13 @@ class ListViewDemo(QWidget):
 
     def run_one_download_task(self,index):
         print("当前正在下载")
-        print(list(college_info.keys())[index])
+        # print(list(college_info.keys())[index])
+        curr_college = list(college_info.keys())[index]
+        print(curr_college)
+        download_single_collage_info(curr_college)
         # 创建一个新的线程
-        thread = Thread()
-        thread.start(list(college_info.keys())[index])
+        # thread = Thread()
+        # thread.start(lambda curr_college:download_single_collage_info(curr_college))
 
         # print()
 

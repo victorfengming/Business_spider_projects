@@ -4,8 +4,8 @@
 
 # 本模块的功能:<>
 
-from main.usual_spider import *
-from main.info_dict import *
+from usual_spider import *
+from info_dict import *
 
 
 def get_main_page_title_and_link(curr_college):
@@ -165,7 +165,12 @@ if __name__ == '__main__':
             print('掰掰┏(＾0＾)┛')
             break
         elif choice_college in college_info.keys():
-            download_single_collage_info(choice_college)
+            try:
+                download_single_collage_info(curr_college)
+            except:
+                print('-'*80)
+                print("网站响应异常:"+curr_college)
+                print('-'*80)
         else:
             print('输入错误,重新输入!')
 
