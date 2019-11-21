@@ -94,7 +94,9 @@ class ReFind:
         pass
 
     def get_email(self):
-        patt = "[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+"
+        # patt = "[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+"
+        # TODO 假这正则,沈阳药科大学  http://syphu.jysd.com/campus
+        patt = ">[.\s]*?([a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+)"
         res = findall(patt, self.txt)
         return res
         pass

@@ -12,20 +12,20 @@ template2 = {
                 "link": "<a href=\"(/campus/view/id/.*?)\" target=\"_blank\">.*?</a>",
             }
 template3 = {
-                "title": "title=\"(.*?)\" class=\"item-link",
-                "link": "href=\"../info(.*?)\" title",
+                "title": "\"title\":\"(.*?)\"",
+                "link": "\"recruitment_id\":\"(.*?)\"",
             }
 
 college_info = {
-    "山西中医药大学": {
-        # http://jy.sxtcm.edu.cn/info/1054/3460.htm
-        "url": "http://jy.sxtcm.edu.cn/jyxx/qyzpxx.htm",
-        "base_url": "http://jy.sxtcm.edu.cn/info",
-        "find_pattern_dict": {
-            "title": "title=\"(.*?)\" class=\"item-link",
-            "link": "href=\"../info(.*?)\" title",
-        },
-    },
+    # "山西中医药大学": {
+    #     # http://jy.sxtcm.edu.cn/info/1054/3460.htm
+    #     "url": "http://jy.sxtcm.edu.cn/jyxx/qyzpxx.htm",
+    #     "base_url": "http://jy.sxtcm.edu.cn/info",
+    #     "find_pattern_dict": {
+    #         "title": "title=\"(.*?)\" class=\"item-link",
+    #         "link": "href=\"../info(.*?)\" title",
+    #     },
+    # },
 
 
     "湖南中医药大学": {
@@ -200,6 +200,7 @@ college_info = {
         },
     },
 
+    # 到这里
     "广东医科大学": {
         "url": "http://jyzd.gdpu.edu.cn/zpxx1.htm",
         "base_url": "http://jyzd.gdpu.edu.cn/",
