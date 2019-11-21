@@ -80,7 +80,6 @@ def download_single_collage_info(curr_college):
             curr_row.append(tel)
             # 保证有两个电话号
 
-
         # 要是数据不够长,就追加值
         if len(curr_row) == 1:
             curr_row.append('')
@@ -144,13 +143,13 @@ if __name__ == '__main__':
     7. 调用save_data_to_xls方法, 将构造的数据保存到表格文档中
     '''
     # 1. 循环所有的学校信息
-    for curr_college in college_info.keys():
-        try:
-            download_single_collage_info(curr_college)
-        except:
-            print('-'*80)
-            print("网站响应异常:"+curr_college)
-            print('-'*80)
+    # for curr_college in college_info.keys():
+    #     try:
+    #         download_single_collage_info(curr_college)
+    #     except:
+    #         print('-'*80)
+    #         print("网站响应异常:"+curr_college)
+    #         print('-'*80)
     # download_single_collage_info('赣南医学院')
     #
     #
@@ -176,5 +175,5 @@ if __name__ == '__main__':
     #     else:
     #         print('输入错误,重新输入!')
 
-    # download_single_collage_info('山西医科大学')
+    download_single_collage_info('黑龙江')
 

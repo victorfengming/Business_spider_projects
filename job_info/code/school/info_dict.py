@@ -200,15 +200,15 @@ college_info = {
         },
     },
 
-    # 到这里
-    "广东医科大学": {
-        "url": "http://jyzd.gdpu.edu.cn/zpxx1.htm",
-        "base_url": "http://jyzd.gdpu.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<A href=\"info/.*?\">(.*?)</A>",
-            "link": "<A href=\"(info/.*?)\">.*?</A>",
-        },
-    },
+    # # 到这里
+    # "广东医科大学": {
+    #     "url": "http://jyzd.gdpu.edu.cn/zpxx1.htm",
+    #     "base_url": "http://jyzd.gdpu.edu.cn/",
+    #     "find_pattern_dict": {
+    #         "title": "<A href=\"info/.*?\">(.*?)</A>",
+    #         "link": "<A href=\"(info/.*?)\">.*?</A>",
+    #     },
+    # },
 
     # # TODO 这个在第二条数据卡住了,代解决
     "天津医科大学": {

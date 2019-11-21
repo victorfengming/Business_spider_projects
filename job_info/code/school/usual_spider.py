@@ -3,7 +3,7 @@
 # Created by 秋叶夏风
 
 # 本模块的功能:<获取每个学习的首页的信息>
-from re import findall,I
+from re import findall,I,search
 from requests import *
 from xlwt import *
 
@@ -52,6 +52,14 @@ class MainPageInfo:
         return every_title
         pass
 
+    # TODO 架构师把架构架构错了,凉凉
+    def get_next_link(self):
+        find_next_link_pattern = '"([\d]+\.htm)" class="Next">下页</a>'
+        res = findall(find_next_link_pattern, resp)
+        try:
+            return 'http://zyyjyxx.hljucm.net/zpxx/zpxx/' + res[0]
+        except:
+            return ''
 
 class ReFind:
     """

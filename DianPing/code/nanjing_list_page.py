@@ -8,9 +8,6 @@
 
 
 
-
-
-
 from utils.usual_spider import *
 
 info = dict()
