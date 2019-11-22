@@ -432,6 +432,7 @@ getvisittimea51788();
 """
 
 from re import findall
+
 def get_next_link():
     find_next_link_pattern = '"([\d]+\.htm)" class="Next">下页</a>'
     res = findall(find_next_link_pattern, resp)
