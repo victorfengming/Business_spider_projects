@@ -6,7 +6,7 @@
 from re import findall,I,search
 from requests import *
 from xlwt import *
-
+from os import path
 class MainPageInfo:
     """
     本类用于获取主页面的信息
@@ -148,14 +148,15 @@ def save_data_to_xls(filename,data):
         for j, q in enumerate(p):
             # print i,j,q
             table.write(i, j, q)
-    try:
-        file.save(filename+'.xls')
 
+    # 判断文件存在不
+    if path.exists(filename+'.xls'):
+        print("保存异常,该文件已经存在!")
+    else:
+        file.save(filename+'.xls')
         print("-" * 80)
         print("保存数据成功--->", filename)
         print("-" * 80)
-    except:
-        print("保存异常,该文件已经存在!")
 
 
 

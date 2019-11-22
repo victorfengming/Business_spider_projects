@@ -17,6 +17,7 @@ template3 = {
             }
 
 college_info = {
+
     # "山西中医药大学": {
     #     # http://jy.sxtcm.edu.cn/info/1054/3460.htm
     #     "url": "http://jy.sxtcm.edu.cn/jyxx/qyzpxx.htm",
@@ -137,6 +138,7 @@ college_info = {
         "base_url": "http://jiuye.wnmc.edu.cn/",
         "find_pattern_dict": template1,
     },
+
     "蚌埠医学院": {
         "url": "https://xsc.bbmc.edu.cn/jyzdzx/zpxx.htm",
         "base_url": "https://xsc.bbmc.edu.cn/jyzdzx/",
@@ -151,6 +153,7 @@ college_info = {
         "base_url": "http://jy.gmu.cn/",
         "find_pattern_dict": template2
     },
+
     "山东中医药大学": {
         "url": "https://jiuye.sdutcm.edu.cn/031/pagelist.jsp?id=c80a152d39ed4a799d0da2daf546aa7d",
         "base_url": "https://jiuye.sdutcm.edu.cn/",
