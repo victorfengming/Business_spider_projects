@@ -27,24 +27,26 @@ college_info = {
     #     },
     # },
 
+    # TODO 电话号码都一样，email没有
+    # "湖南中医药大学": {
+    #     "url": "http://hnzyy.bibibi.net/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
+    #     "base_url": "http://hnzyy.bibibi.net/detail/online?id=",
+    #     "find_pattern_dict": template3
+    # },
 
-    "湖南中医药大学": {
-        "url": "http://hnzyy.bibibi.net/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
-        "base_url": "http://hnzyy.bibibi.net/detail/online?id=",
-        "find_pattern_dict": template3
-    },
+    # TODO 除了标题啥都没有
+    # "安徽医科大学": {
+    #     "url": "http://ahmu.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
+    #     "base_url": "http://ahmu.bysjy.com.cn/detail/online?id=",
+    #     "find_pattern_dict": template3
+    # },
 
-    "安徽医科大学": {
-        "url": "http://ahmu.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
-        "base_url": "http://ahmu.bysjy.com.cn/detail/online?id=",
-        "find_pattern_dict": template3
-    },
-
-    "吉林医药学院": {
-        "url": "http://jlmu.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=&degree=",
-        "base_url": "http://jlmu.bysjy.com.cn/detail/online?id=",
-        "find_pattern_dict": template3
-    },
+    # TODO 除了标题啥都没有
+    # "吉林医药学院": {
+    #     "url": "http://jlmu.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=&degree=",
+    #     "base_url": "http://jlmu.bysjy.com.cn/detail/online?id=",
+    #     "find_pattern_dict": template3
+    # },
 
     "长春中医药大学": {
         "url": "http://cczyy.bibibi.net/module/getonlines?start_page=1&k=&recruit_type=&count=15&start=1&_=1574266372438",
@@ -52,17 +54,19 @@ college_info = {
         "find_pattern_dict": template3
     },
 
-    "沈阳医学院": {
-        "url": "http://symc.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
-        "base_url": "http://symc.bysjy.com.cn/detail/online?id=",
-        "find_pattern_dict": template3
-    },
+    # 除了标题啥都没有
+    # "沈阳医学院": {
+    #     "url": "http://symc.bysjy.com.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=",
+    #     "base_url": "http://symc.bysjy.com.cn/detail/online?id=",
+    #     "find_pattern_dict": template3
+    # },
 
-    "中国医科大学": {
-        "url": "http://jy.cmu.edu.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=&degree=",
-        "base_url": "http://jy.cmu.edu.cn/detail/online?id=",
-        "find_pattern_dict": template3
-    },
+    # TODO 除了标题啥都没有
+    # "中国医科大学": {
+    #     "url": "http://jy.cmu.edu.cn/module/getonlines?start=0&count=16&k=&professionals=&recruit_type=&degree=",
+    #     "base_url": "http://jy.cmu.edu.cn/detail/online?id=",
+    #     "find_pattern_dict": template3
+    # },
 
     "福建医科大学": {
         "url": "http://fjyk.bibibi.net/module/getonlines?start_page=1&k=&recruit_type=&count=15&start=1&_=1574259529573",
@@ -75,14 +79,16 @@ college_info = {
         "base_url": "http://zsjyc.jxutcm.edu.cn/detail/online?id=",
         "find_pattern_dict": template3
     },
-    "内蒙古医科大学": {
-        "url": "http://immc.university-hr.com/showmore.php?actiontype=8",
-        "base_url": "http://immc.university-hr.com/",
-        "find_pattern_dict": {
-            "title": "<a href=\"showarticle.*?\"[.|\s]*?>(.*?)</a>",
-            "link": "<a href=\"(showarticle\.php\?actiontype=8&id=.*?)\"",
-        },
-    },
+
+    # 网站响应异常:内蒙古医科大学
+    # "内蒙古医科大学": {
+    #     "url": "http://immc.university-hr.com/showmore.php?actiontype=8",
+    #     "base_url": "http://immc.university-hr.com/",
+    #     "find_pattern_dict": {
+    #         "title": "<a href=\"showarticle.*?\"[.|\s]*?>(.*?)</a>",
+    #         "link": "<a href=\"(showarticle\.php\?actiontype=8&id=.*?)\"",
+    #     },
+    # },
 
     "黑龙江中医药大学": {
         "url": "http://zyyjyxx.hljucm.net/zpxx/zpxx.htm",
@@ -200,38 +206,39 @@ college_info = {
         },
     },
 
-    # # 到这里
-    # "广东医科大学": {
-    #     "url": "http://jyzd.gdpu.edu.cn/zpxx1.htm",
-    #     "base_url": "http://jyzd.gdpu.edu.cn/",
+    # 到这里
+    "广东医科大学": {
+        "url": "http://jyzd.gdpu.edu.cn/zpxx1.htm",
+        "base_url": "http://jyzd.gdpu.edu.cn/",
+        "find_pattern_dict": {
+            "title": "<A href=\"info/.*?\">(.*?)</A>",
+            "link": "<A href=\"(info/.*?)\">.*?</A>",
+        },
+    },
+
+    # # # TODO 这个在第二条数据卡住了,代解决 网站响应异常:天津医科大学
+    # "天津医科大学": {
+    #     # 目标地址
+    #     "url": "http://www.tmu.edu.cn/jyw/3334/list.htm",
+    #     # 基础的url,本站的基础地址,
+    #     # 用于拼接获取到的半拉科技的地址前面
+    #     "base_url": "http://www.tmu.edu.cn/",
+    #     # 正则表达式字典
     #     "find_pattern_dict": {
-    #         "title": "<A href=\"info/.*?\">(.*?)</A>",
-    #         "link": "<A href=\"(info/.*?)\">.*?</A>",
+    #         "title": "htm' target='_blank' title='(.*?)'",
+    #         "link": "'(.*?htm)' target='_blank' title="
     #     },
     # },
 
-    # # TODO 这个在第二条数据卡住了,代解决
-    "天津医科大学": {
-        # 目标地址
-        "url": "http://www.tmu.edu.cn/jyw/3334/list.htm",
-        # 基础的url,本站的基础地址,
-        # 用于拼接获取到的半拉科技的地址前面
-        "base_url": "http://www.tmu.edu.cn/",
-        # 正则表达式字典
-        "find_pattern_dict": {
-            "title": "htm' target='_blank' title='(.*?)'",
-            "link": "'(.*?htm)' target='_blank' title="
-        },
-    },
-
-    "广西医科大学": {
-        "url": "http://jcy.gxmu.edu.cn/nologin/school!articleNewsIndex.htm?article.searchArticleType=24",
-        "base_url": "http://jcy.gxmu.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href=\"/nologin/school!articleDetail\.htm\?.*?\" target=\"_blank\">(.*?)</a>",
-            "link": "<a href=\"(/nologin/school!articleDetail\.htm\?.*?)\" target=\"_blank\">.*?</a>",
-        },
-    },
+    # TODO 啥也没有,空表格
+    # "广西医科大学": {
+    #     "url": "http://jcy.gxmu.edu.cn/nologin/school!articleNewsIndex.htm?article.searchArticleType=24",
+    #     "base_url": "http://jcy.gxmu.edu.cn/",
+    #     "find_pattern_dict": {
+    #         "title": "<a href=\"/nologin/school!articleDetail\.htm\?.*?\" target=\"_blank\">(.*?)</a>",
+    #         "link": "<a href=\"(/nologin/school!articleDetail\.htm\?.*?)\" target=\"_blank\">.*?</a>",
+    #     },
+    # },
 
     # TODO 这个返回了404 ,大瑕疵,有待解决
     # "成都中医药大学": {
@@ -264,14 +271,15 @@ college_info = {
 
     # TODO 后面的字典仍然需要进行完善
 
-    "成都医学院": {
-        "url": "http://jy.cmc.edu.cn/search/query.action?partId=3",
-        "base_url": "http://jy.cmc.edu.cn/",
-        "find_pattern_dict": {
-            "title": "<a href=\"/html/zhaopin/.*?\"[.|\s]*?class=\"non-line fnt_333333_13\">(.*?)</a>",
-            "link": "<a href=\"(/html/zhaopin/.*?)\"[.|\s]*?class=\"non-line fnt_333333_13\">.*?</a>",
-        },
-    },
+    # TODO 除了标题啥都没有
+    # "成都医学院": {
+    #     "url": "http://jy.cmc.edu.cn/search/query.action?partId=3",
+    #     "base_url": "http://jy.cmc.edu.cn/",
+    #     "find_pattern_dict": {
+    #         "title": "<a href=\"/html/zhaopin/.*?\"[.|\s]*?class=\"non-line fnt_333333_13\">(.*?)</a>",
+    #         "link": "<a href=\"(/html/zhaopin/.*?)\"[.|\s]*?class=\"non-line fnt_333333_13\">.*?</a>",
+    #     },
+    # },
 
     "首都医科大学": {
         "url": "http://jy.ccmu.edu.cn/sites/p/01/main.jsp?ColumnID=p_24",
@@ -297,14 +305,14 @@ college_info = {
         "base_url": "http://jyxxw.ahtcm.edu.cn/",
         "find_pattern_dict": template1,
     },
-    #
-    "牡丹江医学院": {
-        "url": "http://mdjmujy.university-hr.com/showmore.php?actiontype=12&pg=1",
-        "base_url": "http://mdjmujy.university-hr.com/",
-        "find_pattern_dict": {
-            "title": "search_keyword=\" title=\"\">(.*?)</a>",
-            "link": "href=\"(.*?search_keyword=)\" title=\"\">.*?</a>",
-        },
-    },
+    # #
+    # "牡丹江医学院": {
+    #     "url": "http://mdjmujy.university-hr.com/showmore.php?actiontype=12&pg=1",
+    #     "base_url": "http://mdjmujy.university-hr.com/",
+    #     "find_pattern_dict": {
+    #         "title": "search_keyword=\" title=\"\">(.*?)</a>",
+    #         "link": "href=\"(.*?search_keyword=)\" title=\"\">.*?</a>",
+    #     },
+    # },
 
 }

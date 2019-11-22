@@ -24,7 +24,7 @@ class MainPageInfo:
         self.request_and_get_response()
 
     def request_and_get_response(self):
-        resp = get(self.url,headers=self.head)
+        resp = get(self.url,headers=self.head,timeout=5)
         try:
             self.resp = resp.content.decode("utf-8")
         except:
@@ -53,13 +53,13 @@ class MainPageInfo:
         pass
 
     # TODO 架构师把架构架构错了,凉凉
-    def get_next_link(self):
-        find_next_link_pattern = '"([\d]+\.htm)" class="Next">下页</a>'
-        res = findall(find_next_link_pattern, resp)
-        try:
-            return 'http://zyyjyxx.hljucm.net/zpxx/zpxx/' + res[0]
-        except:
-            return ''
+    # def get_next_link(self):
+    #     find_next_link_pattern = '"([\d]+\.htm)" class="Next">下页</a>'
+    #     res = findall(find_next_link_pattern, resp)
+    #     try:
+    #         return 'http://zyyjyxx.hljucm.net/zpxx/zpxx/' + res[0]
+    #     except:
+    #         return ''
 
 class ReFind:
     """
@@ -74,7 +74,7 @@ class ReFind:
         self._get_single_page_html()
 
     def _get_single_page_html(self):
-        resp = get(self.url,headers=self.head)
+        resp = get(self.url,headers=self.head,timeout=5)
         try:
             resp = resp.content.decode("utf-8")
         except:
@@ -102,9 +102,9 @@ class ReFind:
         pass
 
     def get_email(self):
-        # patt = "[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+"
+        patt = "[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+"
         # TODO 假这正则,沈阳药科大学  http://syphu.jysd.com/campus
-        patt = ">[.\s]*?([a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+)"
+        # patt = ">[.\s]*?([a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+)"
         res = findall(patt, self.txt)
         return res
         pass
@@ -148,7 +148,14 @@ def save_data_to_xls(filename,data):
         for j, q in enumerate(p):
             # print i,j,q
             table.write(i, j, q)
-    file.save(filename+'.xls')
+    try:
+        file.save(filename+'.xls')
+
+        print("-" * 80)
+        print("保存数据成功--->", filename)
+        print("-" * 80)
+    except:
+        print("保存异常,该文件已经存在!")
 
 
 

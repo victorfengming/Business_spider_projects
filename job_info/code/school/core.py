@@ -111,16 +111,13 @@ def download_single_collage_info(curr_college):
 
     # 6. 学校名称作为文件名filename, data作为代保存数据
     file_name = curr_college
-    print("-" * 80)
-    print("-----------------------------------数据为-------------------------------")
-    print(data)
-    print("-" * 80)
+    # print("-" * 80)
+    # print("-----------------------------------数据为-------------------------------")
+    # print(data)
+    # print("-" * 80)
 
     # 保存数据
     save_data_to_xls(file_name, data)
-    print("-" * 80)
-    print("保存数据成功--->", file_name)
-    print("-" * 80)
 
     # 暂时就循环一次,用于测试
     # break
@@ -154,26 +151,31 @@ if __name__ == '__main__':
     #
     #
 
-    # while True:
-    #     # print('-'*50)
-    #     i = 0
-    #     for curr_college in college_info.keys():
-    #         i += 1
-    #         print('|',curr_college.ljust(20, ' '))
-    #     choice_college = input('请选择学校:,按0退出:')
-    #     # print('-'*80)
-    #     if choice_college == '0':
-    #         print('掰掰┏(＾0＾)┛')
-    #         break
-    #     elif choice_college in college_info.keys():
-    #         try:
-    #             download_single_collage_info(curr_college)
-    #         except:
-    #             print('-'*80)
-    #             print("网站响应异常:"+curr_college)
-    #             print('-'*80)
-    #     else:
-    #         print('输入错误,重新输入!')
+    while True:
+        # print('-'*50)
+        i = 0
+        print('-' * 80)
+        for curr_college in college_info.keys():
+            i += 1
+            print('|',curr_college.ljust(20, ' '))
+        print('-' * 80)
+        choice_college = input('请选择学校 :')
+        # print('-'*80)
+        if choice_college == '0':
+            print('掰掰┏(＾0＾)┛')
+            break
+        elif choice_college in college_info.keys():
+            try:
+                print('正在抓取,请稍后...')
+                download_single_collage_info(choice_college)
+            except:
+                print('-'*80)
+                print("网站响应异常:"+choice_college+"\t抓取数据失败!")
+                print('-'*80)
+        else:
+            print('-'*80)
+            print('您输入的学校不存在,请重新输入!')
+            print('-'*80)
 
-    download_single_collage_info('黑龙江')
-
+    # download_single_collage_info('安徽医科大学')
+    # print(len(college_info.keys()))
