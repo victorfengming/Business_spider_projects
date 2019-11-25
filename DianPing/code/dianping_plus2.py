@@ -6,7 +6,6 @@ import requests
 import random
 from xlwt import Workbook
 from os import path, remove
-from pinyin import *
 
 # 定义一个保存数据函数
 def save_data_to_xls(filename, data_list):
@@ -380,14 +379,9 @@ if __name__ == '__main__':
     print("-"*80)
     print("| 欢迎使用大众点评抓取工具")
     print("-"*80)
-    curr_city = input("| 请输入需要抓取的城市名称:")
+    curr_city = input("| 请输入需要抓取的城市名称全拼:")
     print("-"*80)
-    try:
-        pinyin = PinYin().get_pinyin(curr_city)
-    except:
-        print("难道没到进来?")
-        time.sleep(5)
-    url = "http://www.dianping.com/"+pinyin+"/ch10/p"
+    url = "http://www.dianping.com/"+curr_city+"/ch10/p"
 
     while True:
         try:
