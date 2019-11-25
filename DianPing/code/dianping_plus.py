@@ -3,8 +3,8 @@
 import requests
 import random
 from xlwt import Workbook
-from os import path,remove
-
+from os import path, remove
+from pinyin import *
 
 # 定义一个保存数据函数
 def save_data_to_xls(filename, data_list):
@@ -76,7 +76,7 @@ class ResultInfo:
 
 
 class GetContent:
-    url = "http://www.dianping.com/nanjing/ch10/r1692"
+    # url =
     # HH = {
     #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
     #     "Accept-Encoding": "gzip, deflate",
@@ -128,15 +128,16 @@ class GetContent:
         """
         return str(random.randint(0, 100000))
 
-    def mget(self):
+    def mget(self, url):
         """
         爬虫第二部,发出请求
         :param url: 代请求页面地址
         :param headers: 请求头相关信息
         :return: 返回请求的响应
         """
+        # url = self.url + str(page_num)
         try:
-            return requests.get(self.url, headers=self.headers).content.decode("utf-8")
+            return requests.get(url, headers=self.headers).content.decode("utf-8")
         except Exception as e:
             print(e)
         return 0
@@ -238,68 +239,163 @@ def get_single_info(content):
     return info_list
 
 
-# 调用get方法获取响应内容
+def save2file(city, curr_url, max_page):
+    '''
+    保存一个城市的信息
+    :param city:
+    :param max_page:
+    :return:
+    '''
+    # 设定最大页数
+    # max_page = 17
+    # 将数据存储到文件中
+    data_list = []
+    # 文件名
+    filename = city
+    # 先判断一下有没有这么多页
+    max_page = max_page if max_page <= 50 else 50
+    # 遍历所有页'
+    for page_num in range(1, max_page + 1):
 
-content = GetContent().mget()
+        # 调用get方法获取响应内容
+        curr_url = curr_url + str(page_num)
+        # print("当前的url是: ",curr_url)
+        content = GetContent().mget(curr_url)
+        # print(content)
+        # 用于存入文件,第一次存入后就不用了
+        '''
+        content=""
+        fp=open("c.txt")
+        for x in fp.readlines():
+            content=content+x
+        #print content
+        '''
 
-# 用于存入文件,第一次存入后就不用了
-'''
-content=""
-fp=open("c.txt")
-for x in fp.readlines():
-    content=content+x
-#print content
-'''
+        # 这里缺了一个转码
+        # content = content.decode("utf-8")
 
-# 这里缺了一个转码
-# content = content.decode("utf-8")
+        # print(conte|nt)
 
-# print(conte|nt)
+        info_list = get_single_info(content)
 
+        # data = {
+        #     "1": ["张三", 150, 120, 100],
+        #     "2": ["李四", 90, 99, 95],
+        #     "3": ["王五", 60, 66, 68]
+        # }
+        data = {
 
-info_list = get_single_info(content)
+        }
+        # print("-" * 60)
+        # 定义列一个表头
+        num = 0
+        # 添加行表头
+        head = ['店铺名称', '人均价格', '店铺地址', '推荐菜品1', '推荐菜品2', '推荐菜品3', '口味评分', '环境评分', '服务评分']
+        data[num] = head
+        # 遍历列表数据
+        for info in info_list:
+            # 更新
+            num += 1
+            curr_row = []
+            curr_row.append(info.shopname)
+            curr_row.append(info.price)
+            curr_row.append(info.address)
+            # 保证recommend的长度固定
+            # 表格列对其
+            chang = len(info.recommand)
+            for i in range(chang):
+                curr_row.append(info.recommand[i])
+            for j in range(3 - chang):
+                curr_row.append("")
 
-# 将数据存储到文件中
-data_list = []
-filename = "南京点评"
-# data = {
-#     "1": ["张三", 150, 120, 100],
-#     "2": ["李四", 90, 99, 95],
-#     "3": ["王五", 60, 66, 68]
+            curr_row.append(info.kouwei[2:])
+            curr_row.append(info.environment[2:])
+            curr_row.append(info.server[2:])
+            '''
+            {'shopname': '从你的全世界路过(1912总统府店)', 'price': '￥108', 'address': '太平北路66号南京1912街区A10栋', 'recommand': ['梅茜的午餐', '老情书', '芝士焗红薯'], 'kouwei': '口味7.7', 'environment': '环境8.8', 'server': '服务8.3'}
+            '''
+            data[num] = curr_row
+            # 不用写toString方法也可以打印出对象的所有成员属性的内容
+            # python中对象的成员属性可以动态添加,java就不行,完蛋儿
+            print(info.__dict__)
+        # 将当前sheet数据追加到对象列表中
+        data_list.append(data)
+
+    # print("-" * 60)
+
+    # 最终保存数据到文件
+    save_data_to_xls(filename, data_list)
+
+#
+# city_dict = {
+#     '南京': "http://www.dianping.com/nanjing/ch10/p",
+#     '北京': 'http://www.dianping.com/beijing/ch10/p',
+#     '天津': 'http://www.dianping.com/tianjin/ch10/p'
 # }
-data = {
 
-}
-print("-" * 60)
-# 定义列一个表头
-num = 0
-# 添加行表头
-head = ['店铺名称','人均价格','店铺地址','推荐菜品1','推荐菜品2','推荐菜品3','口味评分','环境评分','服务评分']
-data[num] = head
-# 遍历列表数据
-for info in info_list:
-    # 更新
-    num += 1
-    curr_row = []
-    curr_row.append(info.shopname)
-    curr_row.append(info.price)
-    curr_row.append(info.address)
-    curr_row.append(info.recommand[0])
-    curr_row.append(info.recommand[1])
-    curr_row.append(info.recommand[2])
-    curr_row.append(info.kouwei[2:])
-    curr_row.append(info.environment[2:])
-    curr_row.append(info.server[2:])
-    '''
-    {'shopname': '从你的全世界路过(1912总统府店)', 'price': '￥108', 'address': '太平北路66号南京1912街区A10栋', 'recommand': ['梅茜的午餐', '老情书', '芝士焗红薯'], 'kouwei': '口味7.7', 'environment': '环境8.8', 'server': '服务8.3'}
-    '''
-    data[num] = curr_row
-    # 不用写toString方法也可以打印出对象的所有成员属性的内容
-    # python中对象的成员属性可以动态添加,java就不行,完蛋儿
-    print(info.__dict__)
+if __name__ == '__main__':
 
-data_list.append(data)
+    # 字典方式
+    # # curr_city = "南京"
+    # max_page = 6
+    #
+    # while True:
+    #     # print('-'*50)
+    #     i = 0
+    #     print('-' * 80)
+    #     for curr_city in city_dict.keys():
+    #         i += 1
+    #         print('|', i, '\t|', curr_city.ljust(20, ' '))
+    #     print('-' * 80)
+    #     choice_num = input('请选择城市(序号) :')
+    #     if choice_num.isdigit():
+    #         choice_num = int(choice_num)
+    #     else:
+    #         print("输入有误,请输入数字!")
+    #         continue
+    #
+    #     if choice_num in range(1, len(city_dict.keys()) + 1):
+    #         pass
+    #     else:
+    #         print("输入序号不在范围,请重新输入!")
+    #         continue
+    #
+    #     choice_city = list(city_dict.keys())[choice_num - 1]
+    #
+    #     try:
+    #         print('正在抓取,请稍后...')
+    #         # 保存一个文件
+    #         save2file(choice_city, max_page)
+    #     except:
+    #         print('-' * 80)
+    #         print("网站响应异常:" + choice_city + "\t抓取数据失败!")
+    #         print('-' * 80)
 
-print("-" * 60)
 
-save_data_to_xls(filename, data_list)
+
+    # 设置最大页数
+    max_page = 1
+    print("-"*80)
+    print("| 欢迎使用大众点评抓取工具")
+    print("-"*80)
+    curr_city = input("| 请输入需要抓取的城市名称:")
+    print("-"*80)
+    pinyin = PinYin().get_pinyin(curr_city)
+    url = "http://www.dianping.com/"+pinyin+"/ch10/p"
+
+    while True:
+        try:
+            max_page = int(input("| 请问需要多少页的数据(1-50):"))
+            break
+        except:
+            print('| 抱歉,您输入有瑕疵,请重新输入!')
+
+    try:
+        # print('正在抓取,请稍后...')
+        # 保存一个文件
+        save2file(curr_city, url, max_page)
+    except:
+        print("| 系统繁忙,抓取失败!")
+
+
+
