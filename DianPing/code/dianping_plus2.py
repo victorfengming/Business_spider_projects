@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
-import time
 
 import requests
-import random
 from xlwt import Workbook
 from os import path, remove
 
@@ -77,7 +75,7 @@ class ResultInfo:
 
 
 class GetContent:
-
+    # 请求头信息
     headers = {
         'Accept-Encoding': 'gzip, deflate',
         'Cache-Control': 'max-age=0',
@@ -128,6 +126,8 @@ class GetContent:
         """
         # url = self.url + str(page_num)
         try:
+            # 2to3.py 转换 到3版本后的问题:
+            # 这里注意与python2.7 不同,需要转换编码格式,否则匹配报错
             return requests.get(url, headers=self.headers).content.decode("utf-8")
         except Exception as e:
             print(e)
@@ -191,8 +191,6 @@ def get_single_info(content):
                 else:
                     break
 
-            # for x in recommand:
-            #     print("\t" + x)
 
             ri.recommand = recommand
 
@@ -249,9 +247,9 @@ def save2file(city, curr_url, max_page):
     for page_num in range(1, max_page + 1):
 
         # 调用get方法获取响应内容
-        curr_url = curr_url + str(page_num)
-        # print("当前的url是: ",curr_url)
-        content = GetContent().mget(curr_url)
+        res_url = curr_url + str(page_num)
+        print("当前的url是: ",res_url)
+        content = GetContent().mget(res_url)
         # print(content)
         # 用于存入文件,第一次存入后就不用了
         '''
@@ -262,13 +260,11 @@ def save2file(city, curr_url, max_page):
         #print content
         '''
 
-        # 这里缺了一个转码
-        # content = content.decode("utf-8")
-
-        # print(conte|nt)
+        # print(content)
 
         info_list = get_single_info(content)
 
+        # 代保存数据样例
         # data = {
         #     "1": ["张三", 150, 120, 100],
         #     "2": ["李四", 90, 99, 95],
@@ -294,6 +290,10 @@ def save2file(city, curr_url, max_page):
             # 保证recommend的长度固定
             # 表格列对其
             chang = len(info.recommand)
+            # 要是长度大于3 多的不要
+            if chang > 3:
+                info.recommend = info.recommend[0:3]
+
             for i in range(chang):
                 curr_row.append(info.recommand[i])
             for j in range(3 - chang):
@@ -317,7 +317,7 @@ def save2file(city, curr_url, max_page):
     # 最终保存数据到文件
     save_data_to_xls(filename, data_list)
 
-#
+# 链接字典
 # city_dict = {
 #     '南京': "http://www.dianping.com/nanjing/ch10/p",
 #     '北京': 'http://www.dianping.com/beijing/ch10/p',
@@ -325,29 +325,35 @@ def save2file(city, curr_url, max_page):
 # }
 
 if __name__ == '__main__':
-
-    # 设置最大页数
-    max_page = 1
-    print("-"*80)
-    print("| 欢迎使用大众点评抓取工具")
-    print("-"*80)
-    curr_city = input("| 请输入需要抓取的城市名称全拼:")
-    print("-"*80)
-    url = "http://www.dianping.com/"+curr_city+"/ch10/p"
-
+    # 死循环保证程序不闪退
     while True:
+
+        # 设置最大页数
+        max_page = 50
+        print("-"*80)
+        print("| 欢迎使用大众点评抓取工具")
+        print("-"*80)
+        curr_city = input("| 请输入需要抓取的城市名称全拼:")
+        print("-"*80)
+        # 通过用户输入的字符串进行拼接url链接
+        url = "http://www.dianping.com/"+curr_city+"/ch10/p"
+
+        # page过大的时候,内容相似甚至相同
+        # 网站问题,所以,page不让用户输入了,固定在5个sheet
+        # while True:
+        #     try:
+        #         max_page = int(input("| 请问需要多少页的数据(1-50):"))
+        #         break
+        #     except:
+        #         print('| 抱歉,您输入有瑕疵,请重新输入!')
+
         try:
-            max_page = int(input("| 请问需要多少页的数据(1-50):"))
-            break
+            # print('正在抓取,请稍后...')
+            # 保存一个文件
+            save2file(curr_city, url, max_page)
         except:
-            print('| 抱歉,您输入有瑕疵,请重新输入!')
+            print("| 系统繁忙,抓取失败!")
+            print("请在浏览器中拖动验证身份")
 
-    try:
-        # print('正在抓取,请稍后...')
-        # 保存一个文件
-        save2file(curr_city, url, max_page)
-    except:
-        print("| 系统繁忙,抓取失败!")
-
-
+        # 当访问频率过高时,如果返回内容为空,需要手动使用浏览器来进行人机验证
 
