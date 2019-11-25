@@ -1,3 +1,4 @@
+text = '''
 <html>
 <head>
     <link rel="icon" type="image/x-icon"
@@ -4312,3 +4313,18 @@ facade({
 </script>
 </body>
 </html>
+'''
+
+from re import findall
+title_patt = "title=\"(.*?)\" target=\"_blank\"[.\s]*?href=\"http://www.dianping.com/shop/.*?\">"
+link_patt = "title=\".*?\" target=\"_blank\"[.\s]*?href=\"(http://www.dianping.com/shop/.*?)\">"
+# link_patt = "title=\"从你的全世界路过\(1912总统府店\)"
+link_list = findall(link_patt,text)
+for link in link_list:
+    print(link)
+
+
+title_list = findall(title_patt,text)
+for title in title_list:
+    print(title)
+

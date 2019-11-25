@@ -53,13 +53,14 @@ class MainPageInfo:
         pass
 
     # TODO 架构师把架构架构错了,凉凉
-    # def get_next_link(self):
-    #     find_next_link_pattern = '"([\d]+\.htm)" class="Next">下页</a>'
-    #     res = findall(find_next_link_pattern, resp)
-    #     try:
-    #         return 'http://zyyjyxx.hljucm.net/zpxx/zpxx/' + res[0]
-    #     except:
-    #         return ''
+    def get_next_link(self):
+        find_next_link_pattern = '<a href=".*([\d]+\.htm)" class="Next">下页'
+        res = findall(find_next_link_pattern, self.resp)
+        for i in res:
+            try:
+                return 'http://zyyjyxx.hljucm.net/zpxx/' + i
+            except:
+                return ''
 
 class ReFind:
     """
