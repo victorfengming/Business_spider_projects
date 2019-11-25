@@ -13,7 +13,7 @@ def save_data_to_xls(filename, data_list):
     用于保存数据到表格
     :param filename: 文件名
     :param data: 字典类型数据
-    :return:
+    :return:null
     '''
     # 需要xlwt库的支持
     # import xlwt
@@ -77,16 +77,6 @@ class ResultInfo:
 
 
 class GetContent:
-    # url =
-    # HH = {
-    #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
-    #     "Accept-Encoding": "gzip, deflate",
-    #     "Content-Type": "text/html;charset=UTF-8",
-    #     "Connection": "keep-alive",
-    #     "Keep-Alive": "timeout=5",
-    #     "Cache-Control": "max-age=0",
-    #     "Cookie": "s_ViewType=10; _lxsdk_cuid=16e9d73c1a377-0783cd8d32352c-e343166-1fa400-16e9d73c1a4c8; _lxsdk=16e9d73c1a377-0783cd8d32352c-e343166-1fa400-16e9d73c1a4c8; _hc.v=4314e0c2-b381-8d7a-acbd-df91892df240.1574599640; _lxsdk_s=16e9db8187a-790-75e-cbb%7C%7C2"
-    # }
 
     headers = {
         'Accept-Encoding': 'gzip, deflate',
@@ -122,12 +112,12 @@ class GetContent:
             price = price.replace(k, str(self.kv[k]))
         return price
 
-    def getint(self):
-        """
-        生成一个随机数
-        :return:
-        """
-        return str(random.randint(0, 100000))
+    # def getint(self):
+    #     """
+    #     生成一个随机数
+    #     :return:
+    #     """
+    #     return str(random.randint(0, 100000))
 
     def mget(self, url):
         """
@@ -335,44 +325,6 @@ def save2file(city, curr_url, max_page):
 # }
 
 if __name__ == '__main__':
-
-    # 字典方式
-    # # curr_city = "南京"
-    # max_page = 6
-    #
-    # while True:
-    #     # print('-'*50)
-    #     i = 0
-    #     print('-' * 80)
-    #     for curr_city in city_dict.keys():
-    #         i += 1
-    #         print('|', i, '\t|', curr_city.ljust(20, ' '))
-    #     print('-' * 80)
-    #     choice_num = input('请选择城市(序号) :')
-    #     if choice_num.isdigit():
-    #         choice_num = int(choice_num)
-    #     else:
-    #         print("输入有误,请输入数字!")
-    #         continue
-    #
-    #     if choice_num in range(1, len(city_dict.keys()) + 1):
-    #         pass
-    #     else:
-    #         print("输入序号不在范围,请重新输入!")
-    #         continue
-    #
-    #     choice_city = list(city_dict.keys())[choice_num - 1]
-    #
-    #     try:
-    #         print('正在抓取,请稍后...')
-    #         # 保存一个文件
-    #         save2file(choice_city, max_page)
-    #     except:
-    #         print('-' * 80)
-    #         print("网站响应异常:" + choice_city + "\t抓取数据失败!")
-    #         print('-' * 80)
-
-
 
     # 设置最大页数
     max_page = 1

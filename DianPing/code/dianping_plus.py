@@ -7,7 +7,7 @@ import random
 from xlwt import Workbook
 from os import path, remove
 from pinyin import *
-
+# TODO 这个pinyin文件 在pyinstaller中不能引入一个exe中,瑕疵 待解决
 # 定义一个保存数据函数
 def save_data_to_xls(filename, data_list):
     '''
